@@ -202,6 +202,39 @@ public class TasksTest {
 		driver.quit();
 			
 		}
+	}
+		@Test
+		public void deveRemoverTarefaComSucesso() throws MalformedURLException {
+			
+			WebDriver driver = acessarAplicacao();
+					
+			
+			try {
+			
+				//inserir tarefa				
+				driver.findElement(By.id("addTodo")).click();			
+				driver.findElement(By.id("task")).sendKeys("Teste via Selenium");
+				driver.findElement(By.id("dueDate")).sendKeys("10/01/2021");
+				driver.findElement(By.id("saveButton")).click();						
+				String mensagem = driver.findElement(By.id("message")).getText();				
+				Assert.assertEquals("Sucesso", mensagem);
+				
+				//remover a tarefa
+				
+				driver.findElement(By.xpath("//a[@class='btn btn-outline-danger btn-sm']")).click();
+				mensagem = driver.findElement(By.id("message")).getText();				
+				Assert.assertEquals("Sucesso", mensagem);
+				
+				
+				
+				
+			} finally {
+			
+				// fechar o browser
+			
+			driver.quit();
+				
+			}
 		
 	
 		
